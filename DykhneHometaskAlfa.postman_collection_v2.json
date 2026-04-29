@@ -1,0 +1,3061 @@
+{
+	"info": {
+		"_postman_id": "11115312-9c35-4b5b-8f5d-010d93cf656d",
+		"name": "HometaskAlfa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "50828172",
+		"_collection_link": "https://natdykhne-3182393.postman.co/workspace/Natalia-Dykhne's-Workspace~31cde0eb-d3ac-4159-8fae-9c5ff0af3aed/collection/50828172-11115312-9c35-4b5b-8f5d-010d93cf656d?action=share&source=collection_link&creator=50828172"
+	},
+	"item": [
+		{
+			"name": "1. Контракты и валидация",
+			"item": [
+				{
+					"name": "1.2 POST",
+					"item": [
+						{
+							"name": "1.2.1 Позитивный сценарий",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.2 Отсутствует lastName и phone не с 7",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"89381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.3 Пустой firstName и email невалидный",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\":\"Дыбленко\",\r\n  \"firstName\": \"\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenkodyblenkodyblenkodyblenkodyblenkodyblenko.mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.4 MiddleName null и birthDate неверный формат",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"null\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-1990-05\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.5 gender не MALE/FEMALE, birthPlace >120",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"male\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"Вселенная, Галактика Млечного пути, Солнечная система, планета Земля, страна Российская Федерация, Московская область, г. Москва, Северо-Западный автономный округ\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.6 clientType не UP, issueDate неверный",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с датой выдачи раньше даты рождения\r",
+											"if (pm.response.code === 201) {\r",
+											"    const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"    const birthDateStr = requestBody.passportData.birthDate;\r",
+											"    const issueDateStr = requestBody.passportData.issueDate;\r",
+											"    \r",
+											"    const [bDay, bMonth, bYear] = birthDateStr.split(\"-\").map(Number);\r",
+											"    const [iDay, iMonth, iYear] = issueDateStr.split(\"-\").map(Number);\r",
+											"    \r",
+											"    const birthDate = new Date(bYear, bMonth - 1, bDay);\r",
+											"    const issueDate = new Date(iYear, iMonth - 1, iDay);\r",
+											"    \r",
+											"    pm.test(\"БАГ: Дата выдачи не может быть раньше даты рождения\", function () {\r",
+											"        if (issueDate < birthDate) {\r",
+											"            pm.expect.fail(`Паспорт выдан ${issueDateStr} до рождения ${birthDateStr}!`);\r",
+											"        }\r",
+											"    });\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"up\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2009\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.7 Отсутствует bankruptIndividual, series не 4 цифры",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4561\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.8 bankruptEntrepreneur null, number не 6 цифр",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с boolean полями\r",
+											"pm.test(\"БАГ: Boolean поля должны принимать только true/false\", function () {\r",
+											"    // Этот тест должен падать, пока баг не пофиксят\r",
+											"    if (pm.response.code === 201) {\r",
+											"        pm.expect.fail(\"Система принимает null/числа в boolean полях. Ожидалось 400!\");\r",
+											"    } else if (pm.response.code === 400) {\r",
+											"        // Если получили 400 - баг пофикшен!\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Boolean поля теперь валидируются правильно\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": null,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"1234567\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.9 Отсутствует contactInfo, account невалидный",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"РУР\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.10 phone null, managerPin не 6 символов",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": null,\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.11 email пустой, embossingName с кириллицей",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"\"\r\n  },\r\n  \"embossingName\": \"МАРК ДЫБЛЕНКО\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.12 embossingName >30, country >50",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO MARK DYBLENKO MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия Россия Россия Россия Россия Россия Россия Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.13 Отсутствует passportData, region >50",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область Московская область Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.14 birthDate несуществующая, city >120",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с несуществующими датами\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const dateField = requestBody.birthDate ? \"birthDate\" : \"passportData.issueDate\";\r",
+											"const invalidDate = requestBody[dateField] || requestBody.passportData[dateField];\r",
+											"\r",
+											"pm.test(\"БАГ: Несуществующие даты должны отвергаться\", function () {\r",
+											"    // Проверяем дату 31 февраля\r",
+											"    const isInvalidDate = invalidDate.includes(\"31-02\");\r",
+											"    \r",
+											"    if (isInvalidDate && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Несуществующая дата \"${invalidDate}\" принята! Ожидалось 400`);\r",
+											"    } else if (isInvalidDate && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Валидация дат работает правильно\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"31-02-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"МоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМоскваМосква\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.15 Отсутствует actualAddress, street >120",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"СвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердловаСвердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.16 registrationAddress null, building >20",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"012345678901234567890\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": null,\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.17 Отсутствует account, apartment >20",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"012345678901234567890\"\r\n  },\r\n   \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.18 managerPin невалидный, phone 10 цифр",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"7938123456\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10А\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.19 embossingName строчные, issueDate будущая",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с будущими датами\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const dateStr = requestBody.passportData.issueDate;\r",
+											"const [day, month, year] = dateStr.split(\"-\").map(Number);\r",
+											"\r",
+											"pm.test(\"БАГ: Будущие даты выдачи паспорта должны отвергаться\", function () {\r",
+											"    const issueDate = new Date(year, month - 1, day);\r",
+											"    const now = new Date();\r",
+											"    const isFutureDate = issueDate > now;\r",
+											"    \r",
+											"    if (isFutureDate && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Будущая дата \"${dateStr}\" принята! Ожидалось 400`);\r",
+											"    } else if (isFutureDate && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Будущие даты теперь отвергаются\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-3010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.20 lastName=35 символов (ровно)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"ДыбленкоДыбленкоДыбленкоДыбленкоДыб\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.21 birthPlace=120 символов (ровно)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"Вселенная, Галактика Млечного пути, Солнечная система, планета Земля, страна Российская Федерация, Московская область, г\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.2.22 Два обязательных поля отсутствуют (lastName и managerPin)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\"\r\n  }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для негативных сценариев валидации\r",
+									"\r",
+									"// Если ожидаем ошибку 400\r",
+									"if (pm.response.code === 400) {\r",
+									"    pm.test(\"Статус 400 Bad Request\", function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Ответ содержит сообщение об ошибке\", function () {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        pm.expect(responseJson).to.have.property(\"message\");\r",
+									"        pm.expect(responseJson.message).to.be.a(\"string\");\r",
+									"        pm.expect(responseJson.message).to.not.be.empty;\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Ответ содержит timestamp ошибки\", function () {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        pm.expect(responseJson).to.have.property(\"timestamp\");\r",
+									"        pm.expect(responseJson.timestamp).to.be.a(\"string\");\r",
+									"    });\r",
+									"    \r",
+									"    // Дополнительные проверки в зависимости от теста\r",
+									"    const testName = pm.info.requestName;\r",
+									"    \r",
+									"    if (testName.includes(\"email\") || testName.includes(\"Email\")) {\r",
+									"        pm.test(\"Сообщение об ошибке связано с email\", function () {\r",
+									"            const message = pm.response.json().message.toLowerCase();\r",
+									"            pm.expect(message).to.include(\"email\");\r",
+									"        });\r",
+									"    }\r",
+									"    \r",
+									"    if (testName.includes(\"phone\") || testName.includes(\"Phone\")) {\r",
+									"        pm.test(\"Сообщение об ошибке связано с телефоном\", function () {\r",
+									"            const message = pm.response.json().message.toLowerCase();\r",
+									"            pm.expect(message).to.include(\"phone\") || pm.expect(message).to.include(\"телефон\");\r",
+									"        });\r",
+									"    }\r",
+									"    \r",
+									"    if (testName.includes(\"date\") || testName.includes(\"Date\")) {\r",
+									"        pm.test(\"Сообщение об ошибке связано с датой\", function () {\r",
+									"            const message = pm.response.json().message.toLowerCase();\r",
+									"            pm.expect(message).to.include(\"date\") || pm.expect(message).to.include(\"дата\");\r",
+									"        });\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// Если получили неожиданный успех (201) - это может быть баг!\r",
+									"if (pm.response.code === 201 && pm.info.requestName.includes(\"невалид\")) {\r",
+									"    pm.test(\"НЕОЖИДАННЫЙ УСПЕХ - возможен баг валидации\", function () {\r",
+									"        pm.expect.fail(\"Получен 201 на невалидных данных. Возможен баг!\");\r",
+									"    });\r",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "1.3 GET",
+					"item": [
+						{
+							"name": "1.3.1 Существующий клиент",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/d9054adf-545a-4831-9eba-c7f228997884",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"d9054adf-545a-4831-9eba-c7f228997884"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.3.2 Несуществующий клиент Copy",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/00000000-0000-0000-0000-000000000000",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"00000000-0000-0000-0000-000000000000"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.3.3 Невалидный формат UUID",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с невалидным UUID\r",
+											"pm.test(\"БАГ: Невалидный UUID должен возвращать 400, а не 500\", function () {\r",
+											"    if (pm.response.code === 500) {\r",
+											"        pm.expect.fail(\"Получено 500 на невалидном UUID! Ожидалось 400\");\r",
+											"    } else if (pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Невалидный UUID теперь возвращает 400\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/uuid-invalid",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"uuid-invalid"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для GET запросов\r",
+									"\r",
+									"if (pm.response.code === 200) {\r",
+									"    pm.test(\"Успешный ответ 200 OK\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"    \r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.test(\"Ответ содержит основные поля клиента\", function () {\r",
+									"        pm.expect(responseJson).to.have.property(\"id\");\r",
+									"        pm.expect(responseJson).to.have.property(\"lastName\");\r",
+									"        pm.expect(responseJson).to.have.property(\"firstName\");\r",
+									"        pm.expect(responseJson).to.have.property(\"clientType\");\r",
+									"        pm.expect(responseJson).to.have.property(\"account\");\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Проверка структуры контактной информации\", function () {\r",
+									"        pm.expect(responseJson).to.have.property(\"contactInfo\");\r",
+									"        pm.expect(responseJson.contactInfo).to.have.property(\"phone\");\r",
+									"        pm.expect(responseJson.contactInfo).to.have.property(\"email\");\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Проверка структуры паспортных данных\", function () {\r",
+									"        pm.expect(responseJson).to.have.property(\"passportData\");\r",
+									"        pm.expect(responseJson.passportData).to.have.property(\"birthDate\");\r",
+									"        pm.expect(responseJson.passportData).to.have.property(\"series\");\r",
+									"        pm.expect(responseJson.passportData).to.have.property(\"number\");\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"if (pm.response.code === 404) {\r",
+									"    pm.test(\"Клиент не найден - 404\", function () {\r",
+									"        pm.response.to.have.status(404);\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Сообщение об отсутствии клиента\", function () {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        pm.expect(responseJson).to.have.property(\"message\");\r",
+									"        const message = responseJson.message.toLowerCase();\r",
+									"        pm.expect(message).to.include(\"not found\") || pm.expect(message).to.include(\"не найден\");\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Специальная проверка для невалидного UUID (баг из отчета)\r",
+									"if (pm.info.requestName.includes(\"невалидный формат UUID\") && pm.response.code === 500) {\r",
+									"    pm.test(\"БАГ: Получена 500 вместо 400 на невалидном UUID\", function () {\r",
+									"        pm.expect.fail(\"Ожидалось 400 Bad Request, получено 500 Internal Server Error\");\r",
+									"    });\r",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "1.4 PUT",
+					"item": [
+						{
+							"name": "1.4.1 Валидное обновление паспорта",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2021\",\r\n    \"series\": \"4520\",\r\n    \"number\": \"654321\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/a02b484a-601b-425f-9cbe-58b2c0a53352/passport",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"a02b484a-601b-425f-9cbe-58b2c0a53352",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.4.2 Обновление с невалидными данными",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2021\",\r\n    \"series\": \"45320\",\r\n    \"number\": \"654341\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/a02b484a-601b-425f-9cbe-58b2c0a53352/passport",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"a02b484a-601b-425f-9cbe-58b2c0a53352",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.4.3 Обновление возраст клиента меньше 18",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-2020\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2021\",\r\n    \"series\": \"4520\",\r\n    \"number\": \"654321\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/a02b484a-601b-425f-9cbe-58b2c0a53352/passport",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"a02b484a-601b-425f-9cbe-58b2c0a53352",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.4.4 Обновление несуществующего клиента",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2021\",\r\n    \"series\": \"4520\",\r\n    \"number\": \"654321\"\r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/a02b484a-601b-425f-9cbe-58b2c0a53353/passport",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"a02b484a-601b-425f-9cbe-58b2c0a53353",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1.5 Точечные проверки",
+					"item": [
+						{
+							"name": "1.5.1 middleName отсутствует",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.2 Неверный формат email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с email валидацией\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const email = requestBody.contactInfo.email;\r",
+											"\r",
+											"pm.test(\"БАГ: Email без точки в домене должен отвергаться\", function () {\r",
+											"    // Проверяем email без точки после @\r",
+											"    const hasInvalidFormat = email.includes('@') && !email.split('@')[1].includes('.');\r",
+											"    \r",
+											"    if (hasInvalidFormat && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Email \"${email}\" без точки в домене принят! Ожидалось 400`);\r",
+											"    } else if (hasInvalidFormat && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Email валидация работает правильно\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.3 passportData.issueDate несуществующая дата",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с несуществующими датами\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const dateField = requestBody.birthDate ? \"birthDate\" : \"passportData.issueDate\";\r",
+											"const invalidDate = requestBody[dateField] || requestBody.passportData[dateField];\r",
+											"\r",
+											"pm.test(\"БАГ: Несуществующие даты должны отвергаться\", function () {\r",
+											"    // Проверяем дату 31 февраля\r",
+											"    const isInvalidDate = invalidDate.includes(\"31-02\");\r",
+											"    \r",
+											"    if (isInvalidDate && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Несуществующая дата \"${invalidDate}\" принята! Ожидалось 400`);\r",
+											"    } else if (isInvalidDate && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Валидация дат работает правильно\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"31-02-2020\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.4 passportData.issueDate будущая дата",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с будущими датами\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const dateStr = requestBody.passportData.issueDate;\r",
+											"const [day, month, year] = dateStr.split(\"-\").map(Number);\r",
+											"\r",
+											"pm.test(\"БАГ: Будущие даты выдачи паспорта должны отвергаться\", function () {\r",
+											"    const issueDate = new Date(year, month - 1, day);\r",
+											"    const now = new Date();\r",
+											"    const isFutureDate = issueDate > now;\r",
+											"    \r",
+											"    if (isFutureDate && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Будущая дата \"${dateStr}\" принята! Ожидалось 400`);\r",
+											"    } else if (isFutureDate && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Будущие даты теперь отвергаются\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2030\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.5 birthDate будущая дата",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с будущей датой рождения\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const dateStr = requestBody.passportData.birthDate;\r",
+											"const [day, month, year] = dateStr.split(\"-\").map(Number);\r",
+											"\r",
+											"pm.test(\"БАГ: Будущая дата рождения должна отвергаться\", function () {\r",
+											"    const birthDate = new Date(year, month - 1, day);\r",
+											"    const now = new Date();\r",
+											"    const isFutureDate = birthDate > now;\r",
+											"    \r",
+											"    if (isFutureDate && pm.response.code !== 400) {\r",
+											"        // Может быть 201 или 403, но не 400\r",
+											"        pm.expect.fail(`Будущая дата рождения \"${dateStr}\" не вызвала 400!`);\r",
+											"    } else if (isFutureDate && pm.response.code === 400) {\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Будущие даты рождения теперь отвергаются\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-2990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.6 passportData.series не 4 цифры",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"45180\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.7 Отсутствует contactInfo",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.8 embossingName кириллицей",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"МАРК ДЫБЛЕНКО\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.9 bankruptEntrepreneur не boolean",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// Тест на баг с boolean полями\r",
+											"pm.test(\"БАГ: Boolean поля должны принимать только true/false\", function () {\r",
+											"    // Этот тест должен падать, пока баг не пофиксят\r",
+											"    if (pm.response.code === 201) {\r",
+											"        pm.expect.fail(\"Система принимает null/числа в boolean полях. Ожидалось 400!\");\r",
+											"    } else if (pm.response.code === 400) {\r",
+											"        // Если получили 400 - баг пофикшен!\r",
+											"        console.log(\"✅ БАГ ПОФИКШЕН: Boolean поля теперь валидируются правильно\");\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": 6,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-1990\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-2010\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.10 issueDate < birthDate",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// ПРОСТОЙ ТЕСТ, КОТОРЫЙ ЯВНО ПОКАЖЕТ БАГ\r",
+											"\r",
+											"const responseJson = pm.response.json();\r",
+											"const actualMessage = responseJson.message;\r",
+											"\r",
+											"// Из вашего ответа:\r",
+											"const buggyMessage = \"Ошибка регистрации: требуется паспорт, выданный после достижения 20 лет. Пожалуйста, предоставьте обновленный паспорт\";\r",
+											"\r",
+											"// Тест, который ВСЕГДА FAIL при получении некорректного сообщения\r",
+											"pm.test(\"КРИТИЧЕСКИЙ ТЕСТ: Проверка корректности сообщения об ошибке\", function () {\r",
+											"    // Если сообщение совпадает с багнутым - FAIL\r",
+											"    if (actualMessage === buggyMessage) {\r",
+											"        pm.expect.fail(`БАГ ОБНАРУЖЕН! \r",
+											"        Система: \"${actualMessage}\"\r",
+											"        Проблема: Сообщение говорит о \"паспорте после 20 лет\", \r",
+											"        но реальная проблема - паспорт выдан ДО рождения!\r",
+											"        Ожидалось: сообщение о том, что дата выдачи не может быть раньше даты рождения.`);\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// Второй тест для общего случая\r",
+											"pm.test(\"Сообщение должно отражать реальную проблему с датами\", function () {\r",
+											"    const lowerMessage = actualMessage.toLowerCase();\r",
+											"    \r",
+											"    // Перечислим НЕправильные сообщения\r",
+											"    const wrongMessages = [\r",
+											"        \"20 лет\",\r",
+											"        \"20 years\", \r",
+											"        \"после достижения 20\",\r",
+											"        \"after 20 years\"\r",
+											"    ];\r",
+											"    \r",
+											"    // Перечислим ПРАВИЛЬНЫЕ формулировки\r",
+											"    const correctMessages = [\r",
+											"        \"до рождения\",\r",
+											"        \"ранее рождения\", \r",
+											"        \"дата выдачи\",\r",
+											"        \"birth date\",\r",
+											"        \"issue date\"\r",
+											"    ];\r",
+											"    \r",
+											"    let hasWrong = false;\r",
+											"    let hasCorrect = false;\r",
+											"    \r",
+											"    wrongMessages.forEach(wrong => {\r",
+											"        if (lowerMessage.includes(wrong)) hasWrong = true;\r",
+											"    });\r",
+											"    \r",
+											"    correctMessages.forEach(correct => {\r",
+											"        if (lowerMessage.includes(correct)) hasCorrect = true;\r",
+											"    });\r",
+											"    \r",
+											"    if (hasWrong && !hasCorrect) {\r",
+											"        console.log(`⚠️ БАГ: Сообщение вводит в заблуждение: \"${actualMessage}\"`);\r",
+											"    }\r",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"15-05-2000\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"20-05-1999\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "1.5.11 Паспорт выдан лицу младше 14 лет",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"// КРАТКИЙ ТЕСТ ДЛЯ ЧЕК-ЛИСТА\r",
+											"\r",
+											"const requestBody = JSON.parse(pm.request.body.raw);\r",
+											"const birthDateStr = requestBody.passportData.birthDate;\r",
+											"const issueDateStr = requestBody.passportData.issueDate;\r",
+											"\r",
+											"// Парсим даты\r",
+											"const [bDay, bMonth, bYear] = birthDateStr.split(\"-\").map(Number);\r",
+											"const [iDay, iMonth, iYear] = issueDateStr.split(\"-\").map(Number);\r",
+											"\r",
+											"const birthDate = new Date(bYear, bMonth - 1, bDay);\r",
+											"const issueDate = new Date(iYear, iMonth - 1, iDay);\r",
+											"\r",
+											"// Вычисляем возраст\r",
+											"let ageAtIssue = iYear - bYear;\r",
+											"if (iMonth < bMonth || (iMonth === bMonth && iDay < bDay)) {\r",
+											"    ageAtIssue--;\r",
+											"}\r",
+											"\r",
+											"// ОСНОВНОЙ ТЕСТ\r",
+											"pm.test(\"БАГ: Паспорт выдан в возрасте \" + ageAtIssue + \" лет (должно быть ≥14)\", function () {\r",
+											"    if (ageAtIssue < 14 && pm.response.code === 201) {\r",
+											"        pm.expect.fail(`Паспорт выдан в ${ageAtIssue} лет! Минимальный возраст: 14 лет`);\r",
+											"    }\r",
+											"});\r",
+											"\r",
+											"// Логирование для отчета\r",
+											"console.log(`birthDate: ${birthDateStr}, issueDate: ${issueDateStr}, возраст: ${ageAtIssue} лет`);"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Дыбленко\",\r\n  \"firstName\": \"Марк\",\r\n  \"middleName\": \"Антонович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79381234567\",\r\n    \"email\": \"dyblenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"MARK DYBLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"20-12-2007\",\r\n    \"birthPlace\": \"г. Москва\",\r\n    \"issueDate\": \"24-01-2021\",\r\n    \"series\": \"4510\",\r\n    \"number\": \"123456\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"Москва\",\r\n    \"street\": \"Свердлова\",\r\n    \"building\": \"1\",\r\n    \"apartment\": \"78\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "1.1.1 Проверка доступности сервиса",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://alfa-campus-qa.ru/bank-registration/api/health",
+							"protocol": "https",
+							"host": [
+								"alfa-campus-qa",
+								"ru"
+							],
+							"path": [
+								"bank-registration",
+								"api",
+								"health"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Бизнес-логика и functional",
+			"item": [
+				{
+					"name": "2.1 Валюта",
+					"item": [
+						{
+							"name": "2.1.1 Регистрация с валютой RUR + валидный managerPin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.1.2 Регистрация с валютой USD + другой валидный managerPin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"USD\",\r\n  \"managerPin\": \"C_M47R\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.1.3 Регистрация с валютой EUR + несуществующий managerPin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"EUR\",\r\n  \"managerPin\": \"C_M57R\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для проверки валюты\r",
+									"\r",
+									"if (pm.response.code === 201) {\r",
+									"    const responseJson = pm.response.json();\r",
+									"    \r",
+									"    pm.test(\"Успешное создание клиента\", function () {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    });\r",
+									"    \r",
+									"    // Определяем ожидаемый префикс счета по валюте\r",
+									"    const requestBody = JSON.parse(pm.request.body.raw);\r",
+									"    const accountCurrency = requestBody.account;\r",
+									"    \r",
+									"    let expectedPrefix;\r",
+									"    switch(accountCurrency) {\r",
+									"        case \"RUR\":\r",
+									"            expectedPrefix = \"40702810\";\r",
+									"            break;\r",
+									"        case \"USD\":\r",
+									"            expectedPrefix = \"40702840\";\r",
+									"            break;\r",
+									"        case \"EUR\":\r",
+									"            expectedPrefix = \"40702978\";\r",
+									"            break;\r",
+									"        default:\r",
+									"            expectedPrefix = \"\";\r",
+									"    }\r",
+									"    \r",
+									"    if (expectedPrefix) {\r",
+									"        pm.test(`Счет начинается с ${expectedPrefix} для валюты ${accountCurrency}`, function () {\r",
+									"            pm.expect(responseJson.account).to.include(expectedPrefix);\r",
+									"        });\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"if (pm.response.code === 400 && pm.info.requestName.includes(\"несуществующий managerPin\")) {\r",
+									"    pm.test(\"Ошибка при невалидном managerPin\", function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Сообщение об ошибке связано с менеджером\", function () {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        const message = responseJson.message.toLowerCase();\r",
+									"        pm.expect(message).to.include(\"manager\") || pm.expect(message).to.include(\"менеджер\");\r",
+									"    });\r",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "2.2 Возраст",
+					"item": [
+						{
+							"name": "2.2.1 <18 лет + валидный паспорт",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-2009\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2023\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.2.2 От 20 до44, паспорт до 20, >1 месяца",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2004\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.2.3 От 20 до44, паспорт до 20, <= 1 месяца",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-11-2006\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"22-11-2025\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.2.4 >=45, паспорт до 45, >1 месяца",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-11-1980\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"09-11-2025\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.2.5 >=45, паспорт после 45",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-11-1980\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"19-11-2025\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для проверки возрастных ограничений\r",
+									"\r",
+									"const responseJson = pm.response.json();\r",
+									"\r",
+									"if (pm.response.code === 403) {\r",
+									"    pm.test(\"Доступ запрещен - возраст меньше 18\", function () {\r",
+									"        pm.response.to.have.status(403);\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Сообщение о возрастном ограничении\", function () {\r",
+									"        const message = responseJson.message.toLowerCase();\r",
+									"        pm.expect(message).to.include(\"age\") || \r",
+									"        pm.expect(message).to.include(\"возраст\") || \r",
+									"        pm.expect(message).to.include(\"18\");\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"if (pm.response.code === 400 && pm.info.requestName.includes(\"нужен новый\")) {\r",
+									"    pm.test(\"Требуется новый паспорт\", function () {\r",
+									"        pm.response.to.have.status(400);\r",
+									"    });\r",
+									"    \r",
+									"    pm.test(\"Сообщение о необходимости нового паспорта\", function () {\r",
+									"        const message = responseJson.message.toLowerCase();\r",
+									"        pm.expect(message).to.include(\"passport\") || \r",
+									"        pm.expect(message).to.include(\"паспорт\") ||\r",
+									"        pm.expect(message).to.include(\"новый\");\r",
+									"    });\r",
+									"}\r",
+									"\r",
+									"// Проверка бага с валидацией дат\r",
+									"if (pm.response.code === 201) {\r",
+									"    const requestBody = JSON.parse(pm.request.body.raw);\r",
+									"    const birthDate = requestBody.passportData.birthDate;\r",
+									"    const issueDate = requestBody.passportData.issueDate;\r",
+									"    \r",
+									"    // Преобразуем даты для сравнения\r",
+									"    const [bDay, bMonth, bYear] = birthDate.split(\"-\").map(Number);\r",
+									"    const [iDay, iMonth, iYear] = issueDate.split(\"-\").map(Number);\r",
+									"    \r",
+									"    const birth = new Date(bYear, bMonth - 1, bDay);\r",
+									"    const issue = new Date(iYear, iMonth - 1, iDay);\r",
+									"    \r",
+									"    if (issue < birth) {\r",
+									"        pm.test(\"БАГ: Дата выдачи паспорта раньше даты рождения\", function () {\r",
+									"            pm.expect.fail(\"Паспорт выдан до рождения клиента!\");\r",
+									"        });\r",
+									"    }\r",
+									"    \r",
+									"    // Проверка минимального возраста получения паспорта (14 лет)\r",
+									"    const ageAtIssue = iYear - bYear - ((iMonth < bMonth) || (iMonth === bMonth && iDay < bDay) ? 1 : 0);\r",
+									"    if (ageAtIssue < 14) {\r",
+									"        pm.test(\"БАГ: Паспорт выдан лицу младше 14 лет\", function () {\r",
+									"            pm.expect.fail(`Паспорт выдан в возрасте ${ageAtIssue} лет (должно быть >= 14)`);\r",
+									"        });\r",
+									"    }\r",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "2.3 Boolean",
+					"item": [
+						{
+							"name": "2.3.1 bankruptIndividual=true + bankruptEntrepreneur=false",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": true,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.3.2 bankruptIndividual=false + bankruptEntrepreneur=true",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": true,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.3.3 bankruptIndividual=true + bankruptEntrepreneur=true",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": true,\r\n  \"bankruptEntrepreneur\": true,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.3.4 Разные адреса (actual ≠ registration)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Московская область\",\r\n    \"city\": \"г. Москва\",\r\n    \"street\": \"Ленина\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "2.4 Дубликаты",
+					"item": [
+						{
+							"name": "Создание базового клиента",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.4.1 Клиент с phone базового",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Иванов\",\r\n  \"firstName\": \"Пётр\",\r\n  \"middleName\": \"Сидорович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"ivanov.different@mail.ru\"\r\n  },\r\n  \"embossingName\": \"PETR IVANOV\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"05-03-1995\",\r\n    \"birthPlace\": \"г. Самара\",\r\n    \"issueDate\": \"10-04-2015\",\r\n    \"series\": \"1111\", \r\n    \"number\": \"222222\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Самара\",\r\n    \"street\": \"Комсомольская\",\r\n    \"building\": \"10\",\r\n    \"apartment\": \"15\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Самара\",\r\n    \"street\": \"Комсомольская\",\r\n    \"building\": \"10\",\r\n    \"apartment\": \"15\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.4.2 Клиент email базового",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Иванов\",\r\n  \"firstName\": \"Пётр\",\r\n  \"middleName\": \"Сидорович\",\r\n  \"gender\": \"MALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"PETR IVANOV\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"05-03-1995\",\r\n    \"birthPlace\": \"г. Самара\",\r\n    \"issueDate\": \"10-04-2015\",\r\n    \"series\": \"1111\", \r\n    \"number\": \"222222\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Самара\",\r\n    \"street\": \"Комсомольская\",\r\n    \"building\": \"10\",\r\n    \"apartment\": \"15\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Самара\",\r\n    \"street\": \"Комсомольская\",\r\n    \"building\": \"10\",\r\n    \"apartment\": \"15\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"U_N10J\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "2.4.3 Клиент с паспортными данными и адресом базового",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Павленко\",\r\n  \"firstName\": \"Анна\",\r\n  \"middleName\": \"Игоревна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781644\",\r\n    \"email\": \"pavlenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"ANNA PAVLENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для проверки дублирования данных\r",
+									"\r",
+									"if (pm.response.code === 201) {\r",
+									"    pm.test(\"Клиент создан успешно\", function () {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    });\r",
+									"    \r",
+									"    // Сохраняем ID для возможных последующих проверок\r",
+									"    const clientId = pm.response.json().id;\r",
+									"    pm.environment.set(\"last_created_client_id\", clientId);\r",
+									"    \r",
+									"    console.log(`Создан клиент с ID: ${clientId}`);\r",
+									"}\r",
+									"\r",
+									"// Если это второй запрос с дублирующими данными\r",
+									"if (pm.info.requestName.includes(\"Два клиента\") || pm.info.requestName.includes(\"дубликат\")) {\r",
+									"    // Проверяем, как система реагирует на дубликаты\r",
+									"    // В документации не указано, должны ли быть ошибки, так что просто логируем\r",
+									"    console.log(\"Реакция системы на дубликат:\");\r",
+									"    console.log(`Статус: ${pm.response.code}`);\r",
+									"    console.log(`Тело ответа: ${pm.response.text().substring(0, 200)}...`);\r",
+									"    \r",
+									"    // Можно добавить проверку, если в будущем появятся требования\r",
+									"    // pm.test(\"Система обрабатывает дубликаты\", function() {\r",
+									"    //     // Принимаем либо 201, либо 400 - в зависимости от требований\r",
+									"    //     pm.expect(pm.response.code).to.be.oneOf([201, 400, 409]);\r",
+									"    // });\r",
+									"}"
+								]
+							}
+						}
+					]
+				},
+				{
+					"name": "2.5 CRUD цикл",
+					"item": [
+						{
+							"name": "CRUD 1/4 CREATE",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"if (pm.response.code === 201) {\r",
+											"    const responseData = pm.response.json();\r",
+											"    pm.collectionVariables.set('crudClientId', responseData.id);\r",
+											"    console.log('CRUD Client ID saved:', responseData.id);\r",
+											"}"
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"lastName\": \"Крымченко\",\r\n  \"firstName\": \"Каролина\",\r\n  \"middleName\": \"Ивановна\",\r\n  \"gender\": \"FEMALE\",\r\n  \"clientType\": \"UP\",\r\n  \"bankruptIndividual\": false,\r\n  \"bankruptEntrepreneur\": false,\r\n  \"contactInfo\": {\r\n    \"phone\": \"79263781622\",\r\n    \"email\": \"krymchenko@mail.ru\"\r\n  },\r\n  \"embossingName\": \"KAROLINA KRYMCHENKO\",\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"15-02-2005\",\r\n    \"series\": \"3786\",\r\n    \"number\": \"654321\"\r\n  },\r\n  \"actualAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"registrationAddress\": {\r\n    \"country\": \"Россия\",\r\n    \"region\": \"Самарская область\",\r\n    \"city\": \"Тольятти\",\r\n    \"street\": \"Аммосова\",\r\n    \"building\": \"2\",\r\n    \"apartment\": \"96\"\r\n  },\r\n  \"account\": \"RUR\",\r\n  \"managerPin\": \"B_L38P\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CRUD 2/4 GET",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/{{crudClientId}}",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"{{crudClientId}}"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CRUD 3/4 GET PUT",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"passportData\": {\r\n    \"birthDate\": \"10-01-1985\",\r\n    \"birthPlace\": \"г. Тольятти\",\r\n    \"issueDate\": \"20-11-2020\", \r\n    \"series\": \"9999\",          \r\n    \"number\": \"888888\"         \r\n  }\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/{{crudClientId}}/passport",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"{{crudClientId}}",
+										"passport"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "CRUD 4/4 GET Проверка обновленных данных",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://alfa-campus-qa.ru/bank-registration/api/clients/{{crudClientId}}",
+									"protocol": "https",
+									"host": [
+										"alfa-campus-qa",
+										"ru"
+									],
+									"path": [
+										"bank-registration",
+										"api",
+										"clients",
+										"{{crudClientId}}"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {},
+								"exec": [
+									"// Тесты для CRUD цикла\r",
+									"\r",
+									"// Для CREATE (1/4)\r",
+									"if (pm.info.requestName.includes(\"CREATE\") || pm.info.requestName.includes(\"1/4\")) {\r",
+									"    if (pm.response.code === 201) {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        \r",
+									"        pm.test(\"Клиент успешно создан\", function () {\r",
+									"            pm.response.to.have.status(201);\r",
+									"        });\r",
+									"        \r",
+									"        // Сохраняем ID для последующих запросов\r",
+									"        pm.collectionVariables.set(\"crudClientId\", responseJson.id);\r",
+									"        \r",
+									"        pm.test(\"Клиент имеет все обязательные поля\", function () {\r",
+									"            pm.expect(responseJson).to.have.property(\"id\");\r",
+									"            pm.expect(responseJson).to.have.property(\"lastName\", \"Крымченко\");\r",
+									"            pm.expect(responseJson).to.have.property(\"firstName\", \"Каролина\");\r",
+									"            pm.expect(responseJson.account).to.include(\"40702810\"); // RUR счет\r",
+									"        });\r",
+									"        \r",
+									"        console.log(`CRUD: Создан клиент с ID ${responseJson.id}`);\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// Для GET (2/4)\r",
+									"if (pm.info.requestName.includes(\"GET\") && pm.info.requestName.includes(\"2/4\")) {\r",
+									"    if (pm.response.code === 200) {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        \r",
+									"        pm.test(\"Данные клиента получены\", function () {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"        \r",
+									"        pm.test(\"ID клиента совпадает с созданным\", function () {\r",
+									"            const crudClientId = pm.collectionVariables.get(\"crudClientId\");\r",
+									"            pm.expect(responseJson.id).to.equal(crudClientId);\r",
+									"        });\r",
+									"        \r",
+									"        // Сохраняем оригинальные данные для сравнения после UPDATE\r",
+									"        pm.collectionVariables.set(\"original_passport_series\", responseJson.passportData.series);\r",
+									"        pm.collectionVariables.set(\"original_passport_number\", responseJson.passportData.number);\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// Для PUT (3/4)\r",
+									"if (pm.info.requestName.includes(\"PUT\") || pm.info.requestName.includes(\"3/4\")) {\r",
+									"    if (pm.response.code === 200) {\r",
+									"        pm.test(\"Паспортные данные обновлены\", function () {\r",
+									"            pm.response.to.have.status(200);\r",
+									"        });\r",
+									"        \r",
+									"        const responseJson = pm.response.json();\r",
+									"        pm.test(\"Ответ содержит обновленные данные\", function () {\r",
+									"            pm.expect(responseJson.passportData.series).to.equal(\"9999\");\r",
+									"            pm.expect(responseJson.passportData.number).to.equal(\"888888\");\r",
+									"        });\r",
+									"    }\r",
+									"}\r",
+									"\r",
+									"// Для финального GET (4/4)\r",
+									"if (pm.info.requestName.includes(\"4/4\")) {\r",
+									"    if (pm.response.code === 200) {\r",
+									"        const responseJson = pm.response.json();\r",
+									"        const originalSeries = pm.collectionVariables.get(\"original_passport_series\");\r",
+									"        const originalNumber = pm.collectionVariables.get(\"original_passport_number\");\r",
+									"        \r",
+									"        pm.test(\"Данные успешно обновлены в системе\", function () {\r",
+									"            pm.expect(responseJson.passportData.series).to.equal(\"9999\");\r",
+									"            pm.expect(responseJson.passportData.number).to.equal(\"888888\");\r",
+									"        });\r",
+									"        \r",
+									"        pm.test(\"Данные изменились после UPDATE\", function () {\r",
+									"            pm.expect(responseJson.passportData.series).to.not.equal(originalSeries);\r",
+									"            pm.expect(responseJson.passportData.number).to.not.equal(originalNumber);\r",
+									"        });\r",
+									"        \r",
+									"        console.log(\"CRUD цикл завершен успешно!\");\r",
+									"    }\r",
+									"}"
+								]
+							}
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					"// Базовые проверки для всех запросов\r",
+					"\r",
+					"// 1. Проверка времени ответа\r",
+					"pm.test(\"Время ответа меньше 2000ms\", function () {\r",
+					"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+					"});\r",
+					"\r",
+					"// 2. Проверка структуры ответа для успешных запроссов\r",
+					"if (pm.response.code === 200 || pm.response.code === 201) {\r",
+					"    pm.test(\"Ответ содержит корректный Content-Type\", function () {\r",
+					"        pm.expect(pm.response.headers.get(\"Content-Type\")).to.include(\"application/json\");\r",
+					"    });\r",
+					"    \r",
+					"    // Для POST запросов проверяем наличие ID\r",
+					"    if (pm.request.method === \"POST\" && pm.response.code === 201) {\r",
+					"        const responseJson = pm.response.json();\r",
+					"        pm.test(\"Созданный клиент имеет ID\", function () {\r",
+					"            pm.expect(responseJson).to.have.property(\"id\");\r",
+					"            pm.expect(responseJson.id).to.be.a(\"string\");\r",
+					"            pm.expect(responseJson.id).to.match(/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/);\r",
+					"        });\r",
+					"        \r",
+					"        pm.test(\"Ответ содержит timestamp создания\", function () {\r",
+					"            pm.expect(responseJson).to.have.property(\"createdAt\");\r",
+					"            pm.expect(responseJson.createdAt).to.be.a(\"string\");\r",
+					"        });\r",
+					"    }\r",
+					"}\r",
+					"\r",
+					"// 3. Логирование для отладки\r",
+					"console.log(`Тест: ${pm.info.requestName}`);\r",
+					"console.log(`Статус: ${pm.response.code} ${pm.response.status}`);\r",
+					"console.log(`Время ответа: ${pm.response.responseTime}ms`);"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "service_address",
+			"value": ""
+		},
+		{
+			"key": "crudClientId",
+			"value": ""
+		},
+		{
+			"key": "original_passport_series",
+			"value": ""
+		},
+		{
+			"key": "original_passport_number",
+			"value": ""
+		}
+	]
+}
