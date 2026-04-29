@@ -1,0 +1,96 @@
+TESTCASE TC-E2E-01: Полный цикл выпуска пластиковой карты для себя
+Предусловие:
+1. Сервис card-issue-api доступен.
+2. Пользователь с X-пином XAAACK существует в системе.
+Ожидаемый результат:
+1. Заявка успешно создана со статусом CREATED.
+2. Статус заявки последовательно изменяется до READY.
+3. На финальном шаге у карты присутствуют номер, срок действия и CVV.
+Шаги:
+Шаг 1: Создание заявки
+   * Запрос: POST https://{{host}}/api/v1/card-issue
+   * Тело (JSON):
+   * json
+ {
+   "request": {
+     "cardOwner": "XAAACK",
+     "formFactor": "PLASTIC",
+     "cardHolder": {
+       "userId": "XAAABA",
+       "nameless": false,
+       "embossedName": "NATALYA DYKHNE"
+     },
+     "options": {
+       "smsNotifications": {
+         "phoneNumber": "79259992326"
+       }
+     }
+   }
+   * }
+   * Проверка: Статус ответа 201, в теле ответа есть поле requestid, статус "CREATED". Сохранить id в переменную request_id.
+Шаг 2: Получение созданной заявки
+   * Запрос: GET https://{{host}}/api/v1/card-issue/{{request_id}}
+   * Проверка: Статус ответа 200. Данные в ответе (cardOwner, formfactor,cardholder,options) полностью соответствуют данным, отправленным в Шаге 1.
+Шаг 3: Смена статуса на PROCESSING
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id}}/status
+   * Тело (JSON): {"status": "PROCESSING"}
+   * Проверка: Статус ответа 200. В теле ответа поле status равно "PROCESSING".
+Шаг 4: Смена статуса на PLASTIC_READY
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id}}/status
+   * Тело (JSON): {"status": "PLASTIC_READY"}
+   * Проверка: Статус ответа 200. Поле status равно "PLASTIC_READY".
+Шаг 5: Финальная проверка данных карты
+   * Запрос: GET https://{{host}}/api/v1/card-issue/{{request_id}}
+   * Проверка: Статус ответа 200. В ответе присутствуют данные карты: id, cardOwner,formFactor,cardHolder,options.
+________________
+
+
+TESTCASE TC-E2E-02: Выпуск виртуальной карты для третьего лица
+Предусловие:
+1. Сервис card-issue-api доступен.
+Ожидаемый результат:
+1. Заявка успешно создана. Все переданные данные третьего лица сохранены.
+2. Заявка проходит цепочку статусов CREATED → PROCESSING → READY.
+3. На финальном шаге у виртуальной карты присутствуют номер, срок действия и CVV.
+Шаги:
+Шаг 1: Создание заявки на третье лицо
+   * Запрос: POST https://{{host}}/api/v1/card-issue
+   * Тело (JSON): Использовать тело из коллекции, заменив "cardOwner": "XAAACK" на "cardOwner": " XAAACL".
+   * Проверка: Статус ответа 201, статус "CREATED". Сохранить id в request_id_third.
+Шаг 2: Проверка данных третьего лица
+   * Запрос: GET https://{{host}}/api/v1/card-issue/{{request_id_third}}
+   * Проверка: Статус ответа 200. Данные третьего лица в ответе (например, firstName, passportData.number) совпадают с данными, отправленными в Шаге 1.
+Шаг 3: Смена статуса на PROCESSING
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id_third}}/status
+   * Тело (JSON): {"status": "PROCESSING"}
+   * Проверка: Статус ответа 200. Поле status равно "PROCESSING".
+Шаг 4: Смена статуса на READY
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id_third}}/status
+   * Тело (JSON): {"status": "READY"}
+   * Проверка: Статус ответа 200. Поле status равно "READY".
+Шаг 5: Финальная проверка виртуальной карты
+   * Запрос: GET https://{{host}}/api/v1/card-issue/{{request_id_third}}
+   * Проверка: Статус ответа 200. В ответе присутствуют данные карты: id, cardOwner,formFactor,cardHolder,options.
+________________
+
+
+TESTCASE TC-E2E-03: Отклонение заявки (негативный сценарий)
+Предусловие:
+1. Сервис card-issue-api доступен.
+2. Создана тестовая заявка (например, по сценарию TC-E2E-01, Шаги 1-2).
+Ожидаемый результат:
+1. Заявка успешно отклонена (статус FAILED).
+2. Попытка изменить статус отклоненной заявки завершается ошибкой с понятным сообщением.
+3. Статус заявки остается FAILED.
+Шаги:
+Шаг 1: Смена статуса на FAILED
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id}}/status
+   * Тело (JSON): {"status": "FAILED"}
+   * Проверка: Статус ответа 200. Поле status равно "FAILED".
+Шаг 2: Попытка изменить статус отклоненной заявки
+   * Запрос: PATCH https://{{host}}/api/v1/card-issue/{{request_id}}/status
+   * Тело (JSON): {"status": "FAILED"}
+   * Проверка: Статус ответа 400, 409 или 503. Тело ответа содержит поле message с текстом об ошибке (например, "Invalid status transition from FAILED to CREATED").
+Шаг 3: Подтверждение финального статуса
+   * Запрос: GET https://{{host}}/api/v1/card-issue/{{request_id}}
+   * Проверка: Статус ответа 200. Поле status равно "FAILED".
