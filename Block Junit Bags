@@ -1,0 +1,14 @@
+Баг №1: Неверный код ошибки при пустом логине
+Описание: При регистрации с пустым логином API возвращает LOGIN_NOT_ALLOWED вместо ожидаемого INVALID_LOGIN_FORMAT.
+Ожидаемое поведение: INVALID_LOGIN_FORMAT с сообщением "Login cannot be empty"
+Фактическое поведение: LOGIN_NOT_ALLOWED с сообщением "Login is not in the allowed list: "
+Компонент: auth-api
+S3, P3
+
+
+Баг №2: 401 вместо 404 для несуществующего платежа
+Описание: При проверке несуществующего платежа с валидным токеном API возвращает 401/UNAUTHORIZED вместо 404/PAYMENT_NOT_FOUND.
+Ожидаемое поведение: PAYMENT_NOT_FOUND (404)
+Фактическое поведение: UNAUTHORIZED (401) с сообщением "Invalid or expired token"
+Компонент: compliance-api
+S2, P2
