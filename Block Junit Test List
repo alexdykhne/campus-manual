@@ -1,0 +1,28 @@
+ПЕРЕЧЕНЬ ТЕСТОВ ДЛЯ РЕАЛИЗАЦИИ
+================================
+
+АUTH-API ТЕСТЫ (6 тестов)
+-------------------------
+1. shouldRegisterEmployee - Успешная регистрация сотрудника с разрешенным логином
+2. shouldNotRegisterDuplicateLogin - Регистрация с уже существующим логином возвращает ALREADY_REGISTERED
+3. shouldNotRegisterWithNotAllowedLogin - Регистрация с неразрешенным логином возвращает LOGIN_NOT_ALLOWED
+4. shouldLoginSuccessfully - Успешная аутентификация возвращает JWT токен
+5. shouldNotLoginWithNonExistentEmployee - Аутентификация с незарегистрированным логином возвращает EMPLOYEE_NOT_FOUND
+6. shouldNotLoginWithWrongPassword - Аутентификация с неверным паролем возвращает INVALID_PASSWORD
+
+COMPLIANCE-API БАЗОВЫЕ ТЕСТЫ (7 тестов)
+---------------------------------------
+7. shouldNotCheckWithoutToken - Проверка платежа без токена возвращает UNAUTHORIZED
+8. shouldBlockPaymentExceedingLargeAmountThreshold - Платеж с суммой > 600 000 блокируется по правилу крупной операции
+9. shouldNotBlockPaymentBelowLargeAmountThreshold - Платеж с суммой <= 600 000 не блокируется, если нет других нарушений
+10. shouldBlockPaymentWhenDailyLimitExceeded - Превышение дневного лимита (сумма платежей за день > 600 000) блокирует платеж
+11. shouldBlockPaymentToSuspiciousOrganization - Платеж в подозрительную организацию блокируется
+12. shouldNotCheckPaymentNotInStatusS - Проверка платежа не в статусе S возвращает INVALID_PAYMENT_STATUS
+13. shouldFindUserOperationsByDate - Поиск операций пользователя за дату через compliance-api
+
+ИНТЕГРАЦИОННЫЕ ТЕСТЫ (2 теста)
+------------------------------
+14. shouldCreateLargePaymentAndGetBlockedByCompliance - Полный сценарий: создание платежа > 600 000 и его блокировка комплаенс
+15. shouldBlockPaymentWhenDailyLimitExceededInComplexScenario - Полный сценарий с несколькими платежами и превышением дневного лимита
+
+ВСЕГО ТЕСТОВ: 15
